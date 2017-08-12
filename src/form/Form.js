@@ -18,6 +18,7 @@ class Form extends PureComponent {
     setValue: PropTypes.func,
     getValue: PropTypes.func,
     getValues: PropTypes.func,
+    reset: PropTypes.func,
   };
 
   state = {
@@ -29,6 +30,7 @@ class Form extends PureComponent {
       setValue: (name, value) => this.setValue(name, value),
       getValue: name => this.getValue(name),
       getValues: () => this.getValues(),
+      reset: () => this.reset(),
     };
   }
 
@@ -45,6 +47,11 @@ class Form extends PureComponent {
   getValue = name => get(this.state.values, name) || null;
 
   getValues = () => this.state.values;
+
+  reset = () =>
+    this.setState({
+      values: this.props.initialValues,
+    });
 
   render() {
     return this.props.children;

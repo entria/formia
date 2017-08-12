@@ -10,6 +10,7 @@ stories.add('default', () =>
     <Form.Input name="user" label="User" placeholder="user@email.com" />
     <Form.Input name="password" type="password" label="Password" />
     <Form.Submit />
+    <Form.Reset />
   </Form>
 );
 

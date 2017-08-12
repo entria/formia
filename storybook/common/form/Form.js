@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Form } from '../../../src';
 import FormInput from './FormInput';
+import FormReset from './FormReset';
 import FormSubmit from './FormSubmit';
 
 class CustomForm extends Component {
@@ -32,6 +33,7 @@ const CustomFormWrapper = ({ onChange, ...props }) =>
   </Form>;
 
 CustomFormWrapper.Input = FormInput;
+CustomFormWrapper.Reset = FormReset;
 CustomFormWrapper.Submit = FormSubmit;
 
 CustomFormWrapper.defaultProps = {
