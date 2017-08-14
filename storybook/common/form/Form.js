@@ -9,11 +9,16 @@ import FormSubmit from './FormSubmit';
 class CustomForm extends Component {
   static contextTypes = {
     getValues: PropTypes.func,
+    getErrors: PropTypes.func,
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.onSubmit(this.context.getValues());
+
+    const values = this.context.getValues();
+    const errors = this.context.getErrors();
+
+    this.props.onSubmit(values, errors);
   }
 
   render() {
@@ -27,8 +32,8 @@ class CustomForm extends Component {
   }
 }
 
-const CustomFormWrapper = ({ onChange, ...props }) =>
-  <Form onChange={onChange}>
+const CustomFormWrapper = ({ validations, onChange, ...props }) =>
+  <Form validations={validations} onChange={onChange}>
     <CustomForm {...props} />
   </Form>;
 
@@ -39,11 +44,13 @@ CustomFormWrapper.Submit = FormSubmit;
 CustomFormWrapper.defaultProps = {
   onSubmit: () => null,
   onChange: () => null,
+  validations: {},
 };
 
 CustomFormWrapper.propTypes = {
   onSubmit: PropTypes.func,
   onChange: PropTypes.func,
+  validations: {},
 };
 
 export default CustomFormWrapper;

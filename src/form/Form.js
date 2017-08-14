@@ -3,14 +3,18 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import set from 'lodash/set';
 
+import { Validation } from '../';
+
 class Form extends PureComponent {
   static propTypes = {
     initialValues: PropTypes.object,
+    validations: PropTypes.object,
     onChange: PropTypes.func,
   };
 
   static defaultProps = {
     initialValues: {},
+    validations: {},
     onChange: () => null,
   };
 
@@ -18,6 +22,8 @@ class Form extends PureComponent {
     setValue: PropTypes.func,
     getValue: PropTypes.func,
     getValues: PropTypes.func,
+    getError: PropTypes.func,
+    getErrors: PropTypes.func,
     reset: PropTypes.func,
   };
 
@@ -30,6 +36,8 @@ class Form extends PureComponent {
       setValue: (name, value) => this.setValue(name, value),
       getValue: name => this.getValue(name),
       getValues: () => this.getValues(),
+      getError: name => this.getError(name),
+      getErrors: () => this.getErrors(),
       reset: () => this.reset(),
     };
   }
@@ -47,6 +55,27 @@ class Form extends PureComponent {
   getValue = name => get(this.state.values, name) || null;
 
   getValues = () => this.state.values;
+
+  getError(name) {
+    const { validations } = this.props;
+    if (!validations || !validations[name]) {
+      return null;
+    }
+
+    const errors = Validation.validate(
+      { [name]: this.getValue(name) },
+      { [name]: validations[name] },
+    );
+
+    return errors[name] ? errors[name] : null;
+  }
+
+  getErrors() {
+    const { validations } = this.props;
+    const { values } = this.state;
+
+    return Validation.validate(values, validations);
+  }
 
   reset = () =>
     this.setState({
