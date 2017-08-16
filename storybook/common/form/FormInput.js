@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Form } from '../../../src';
+import FormGroup from './FormGroup';
 
 class FormInput extends Component {
   static propTypes = {
@@ -47,10 +48,14 @@ class FormInput extends Component {
     } = this.props;
 
     return (
-      <div style={styles.group}>
-        {label &&
-          <label htmlFor={name} style={styles.label}>{label}</label>}
-
+      <FormGroup
+        name={name}
+        debug={debug}
+        label={label}
+        dirty={dirty}
+        pristine={pristine}
+        error={error}
+      >
         <input
           id={name}
           type={type}
@@ -59,19 +64,7 @@ class FormInput extends Component {
           onChange={event => setValue(event.target.value)}
           style={styles.field}
         />
-
-        {dirty && error &&
-          <div style={styles.error}>
-            {error.map(err => <div key={err}>{err}</div>)}
-          </div>}
-
-        {debug &&
-          <div style={styles.debug}>
-            <div>dirty: {dirty.toString()}</div>
-            <div>pristine: {pristine.toString()}</div>
-            <div>error: {JSON.stringify(error)}</div>
-          </div>}
-      </div>
+      </FormGroup>
     );
   }
 }
@@ -79,24 +72,8 @@ class FormInput extends Component {
 const FormInputField = props => <Form.Field component={FormInput} {...props} />
 
 const styles = {
-  group: {
-    width: '100%',
-    marginBottom: 15,
-  },
-  label: {
-    display: 'block',
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
   field: {
     width: '100%',
-  },
-  debug: {
-    marginTop: 5,
-  },
-  error: {
-    marginTop: 5,
-    color: '#d9534f',
   },
 };
 

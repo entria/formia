@@ -1,6 +1,6 @@
 import { Strings } from '@entria/utils';
 
-export const alpha = (message = 'Only alpha characters are allowed') => value => {
+export const isAlpha = (message = 'Only alpha characters are allowed') => value => {
   if (Strings.isEmpty(value)) {
     return null;
   }
@@ -8,7 +8,7 @@ export const alpha = (message = 'Only alpha characters are allowed') => value =>
   return Strings.isAlpha(value) ? null : message;
 };
 
-export const email = (message = 'Invalid email address') => value => {
+export const isEmail = (message = 'Invalid email address') => value => {
   if (Strings.isEmpty(value)) {
     return null;
   }
