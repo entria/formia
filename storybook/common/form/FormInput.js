@@ -60,6 +60,11 @@ class FormInput extends Component {
           style={styles.field}
         />
 
+        {dirty && error &&
+          <div style={styles.error}>
+            {error.map(err => <div key={err}>{err}</div>)}
+          </div>}
+
         {debug &&
           <div style={styles.debug}>
             <div>dirty: {dirty.toString()}</div>
@@ -80,6 +85,7 @@ const styles = {
   },
   label: {
     display: 'block',
+    fontWeight: 'bold',
     marginBottom: 5,
   },
   field: {
@@ -87,7 +93,11 @@ const styles = {
   },
   debug: {
     marginTop: 5,
-  }
+  },
+  error: {
+    marginTop: 5,
+    color: '#d9534f',
+  },
 };
 
 export default FormInputField;

@@ -1,6 +1,8 @@
 import get from 'lodash/get';
 import { Strings } from '@entria/utils';
 
+export * as String from './StringValidation';
+
 type Error = {
   code: string,
   message: string,
@@ -41,7 +43,7 @@ export const validate = (
   return errors;
 };
 
-export const required = (message = 'Campo obrigatório') => value => {
+export const required = (message = 'Required field') => value => {
   const isValid = !Strings.isEmpty(value);
   return isValid ? null : message;
 };

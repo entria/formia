@@ -27,3 +27,19 @@ stories.add('default', () =>
     <Form.Reset />
   </Form>
 );
+
+stories.add('strings', () =>
+  <Form
+    validations={{
+      alpha: [Validation.String.alpha()],
+      email: [Validation.String.email()],
+      minLength: [Validation.String.minLength(10)],
+      minWords: [Validation.String.minWords(3)],
+    }}
+  >
+    <Form.Input name="alpha" label="Validation.String.alpha()" />
+    <Form.Input name="email" label="Validation.String.email()" />
+    <Form.Input name="minLength" label="Validation.String.minLength(10)" />
+    <Form.Input name="minWords" label="Validation.String.minWords(3)" />
+  </Form>
+);
