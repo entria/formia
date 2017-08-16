@@ -58,3 +58,15 @@ stories.add('booleans', () =>
     <Form.Select name="isFalse" options={YES_OR_NO_OPTIONS} label="Validation.Boolean.isFalse()" />
   </Form>
 );
+
+stories.add('brazil', () =>
+  <Form
+    validations={{
+      cpf: [Validation.Brazil.cpf()],
+      phone: [Validation.Brazil.phone()],
+    }}
+  >
+    <Form.Input name="cpf" label="Validation.Brazil.cpf()" />
+    <Form.Input name="phone" label="Validation.Brazil.phone()" />
+  </Form>
+);
