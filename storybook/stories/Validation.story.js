@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 
 import { Validation } from '../../src';
-import { Form } from '../common';
+import { Form, YES_OR_NO_OPTIONS } from '../common';
 
 const stories = storiesOf('Validation', module);
 
@@ -41,5 +41,17 @@ stories.add('strings', () =>
     <Form.Input name="isEmail" label="Validation.String.isEmail()" />
     <Form.Input name="minLength" label="Validation.String.minLength(10)" />
     <Form.Input name="minWords" label="Validation.String.minWords(3)" />
+  </Form>
+);
+
+stories.add('booleans', () =>
+  <Form
+    validations={{
+      isTrue: [Validation.Boolean.isTrue()],
+      isFalse: [Validation.Boolean.isFalse()],
+    }}
+  >
+    <Form.Select name="isTrue" options={YES_OR_NO_OPTIONS} label="Validation.Boolean.isTrue()" />
+    <Form.Select name="isFalse" options={YES_OR_NO_OPTIONS} label="Validation.Boolean.isFalse()" />
   </Form>
 );

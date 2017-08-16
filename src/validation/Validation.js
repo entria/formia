@@ -2,6 +2,7 @@ import get from 'lodash/get';
 import { Strings } from '@entria/utils';
 
 export * as String from './StringValidation';
+export * as Boolean from './BooleanValidation';
 
 type Error = {
   code: string,

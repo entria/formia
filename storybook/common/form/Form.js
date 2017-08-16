@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Form } from '../../../src';
+import FormGroup from './FormGroup';
 import FormInput from './FormInput';
 import FormReset from './FormReset';
+import FormSelect from './FormSelect';
 import FormSubmit from './FormSubmit';
 
 class CustomForm extends Component {
@@ -37,8 +39,10 @@ const CustomFormWrapper = ({ validations, onChange, ...props }) =>
     <CustomForm {...props} />
   </Form>;
 
+CustomFormWrapper.Group = FormGroup;
 CustomFormWrapper.Input = FormInput;
 CustomFormWrapper.Reset = FormReset;
+CustomFormWrapper.Select = FormSelect;
 CustomFormWrapper.Submit = FormSubmit;
 
 CustomFormWrapper.defaultProps = {
