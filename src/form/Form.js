@@ -33,7 +33,7 @@ class Form extends PureComponent {
 
   getChildContext() {
     return {
-      setValue: (name, value) => this.setValue(name, value),
+      setValue: (name, value, onChange) => this.setValue(name, value, onChange),
       getValue: name => this.getValue(name),
       getValues: () => this.getValues(),
       getError: name => this.getError(name),
@@ -42,14 +42,17 @@ class Form extends PureComponent {
     };
   }
 
-  setValue = (name, value) => {
+  setValue = (name, value, onChange) => {
     const values = {
       ...this.state.values,
     };
 
     set(values, name, value);
 
-    this.setState({ values }, () => this.props.onChange(values));
+    this.setState({ values }, () => {
+      this.props.onChange(values);
+      onChange(values);
+    });
   };
 
   getValue = name => get(this.state.values, name) || null;
