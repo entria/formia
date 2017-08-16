@@ -50,6 +50,9 @@ stories.add('booleans', () =>
       isTrue: [Validation.Boolean.isTrue()],
       isFalse: [Validation.Boolean.isFalse()],
     }}
+    initialValues={{
+      isFalse: false,
+    }}
   >
     <Form.Select name="isTrue" options={YES_OR_NO_OPTIONS} label="Validation.Boolean.isTrue()" />
     <Form.Select name="isFalse" options={YES_OR_NO_OPTIONS} label="Validation.Boolean.isFalse()" />
