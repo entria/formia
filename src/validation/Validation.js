@@ -1,7 +1,27 @@
 import get from 'lodash/get';
 import { Strings } from '@entria/utils';
 
-export const validate = (values, validations = {}) => {
+type Error = {
+  code: string,
+  message: string,
+};
+
+type ValidationValues = {
+  [string]: any,
+};
+
+type ValidationRules = {
+  [string]: any,
+};
+
+type ValidationErrors = {
+  [string]: Array<Error>,
+};
+
+export const validate = (
+  values: ValidationValues,
+  validations: ValidationRules = {},
+): ValidationErrors => {
   const errors = {};
 
   Object.keys(validations).forEach(field => {

@@ -14,10 +14,10 @@ stories.add('default', () =>
     }}
     onSubmit={(values, errors) => {
       if (errors) {
-        return alert(JSON.stringify(errors));
+        return alert(`Errors: \n ${JSON.stringify(errors)}`);
       }
 
-      return alert(JSON.stringify(values));
+      return alert(`Success: \n ${JSON.stringify(values)}`);
     }}
   >
     <Form.Input name="user" label="User" placeholder="user@email.com" />
