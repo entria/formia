@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import set from 'lodash/set';
 
 import { Validation } from '../';
+import FormField from './FormField';
 
 class Form extends PureComponent {
   static propTypes = {
@@ -24,6 +25,8 @@ class Form extends PureComponent {
     getValues: PropTypes.func,
     getError: PropTypes.func,
     getErrors: PropTypes.func,
+    isDirty: PropTypes.func,
+    isPristine: PropTypes.func,
     reset: PropTypes.func,
   };
 
@@ -38,6 +41,8 @@ class Form extends PureComponent {
       getValues: () => this.getValues(),
       getError: name => this.getError(name),
       getErrors: () => this.getErrors(),
+      isDirty: name => this.isDirty(name),
+      isPristine: name => this.isPristine(name),
       reset: () => this.reset(),
     };
   }
@@ -80,6 +85,20 @@ class Form extends PureComponent {
     return Validation.validate(values, validations);
   }
 
+  isDirty(name) {
+    const currentValue = this.getValue(name);
+    const initialValue = get(this.props.initialValues, name) || null;
+
+    return currentValue !== initialValue;
+  }
+
+  isPristine(name) {
+    const currentValue = this.getValue(name);
+    const initialValue = get(this.props.initialValues, name) || null;
+
+    return currentValue === initialValue;
+  }
+
   reset = () =>
     this.setState({
       values: this.props.initialValues,
@@ -89,5 +108,7 @@ class Form extends PureComponent {
     return this.props.children;
   }
 }
+
+Form.Field = FormField;
 
 export default Form;

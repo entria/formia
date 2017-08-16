@@ -50,7 +50,7 @@ CustomFormWrapper.defaultProps = {
 CustomFormWrapper.propTypes = {
   onSubmit: PropTypes.func,
   onChange: PropTypes.func,
-  validations: {},
+  validations: PropTypes.object,
 };
 
 export default CustomFormWrapper;

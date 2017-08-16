@@ -1,28 +1,49 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { Form } from '../../../src';
+
 class FormInput extends Component {
   static propTypes = {
-    name: PropTypes.string.isRequired,
     type: PropTypes.string,
     label: PropTypes.any,
     placeholder: PropTypes.string,
+    // debug mode
+    debug: PropTypes.bool,
+    // injected by Form.Field
+    name: PropTypes.string.isRequired,
+    setValue: PropTypes.func.isRequired,
+    value: PropTypes.string,
+    dirty: PropTypes.bool.isRequired,
+    pristine: PropTypes.bool.isRequired,
+    error: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
     type: 'text',
     label: '',
     placeholder: '',
-  };
-
-  static contextTypes = {
-    setValue: PropTypes.func,
-    getValue: PropTypes.func,
+    // debug mode
+    debug: false,
+    // injected by Form.Field
+    value: '',
   };
 
   render() {
-    const { getValue, setValue } = this.context;
-    const { name, type, label, placeholder } = this.props;
+    const {
+      name,
+      type,
+      label,
+      placeholder,
+      // debug mode
+      debug,
+      // injected by Form.Field
+      setValue,
+      value,
+      dirty,
+      pristine,
+      error,
+    } = this.props;
 
     return (
       <div style={styles.group}>
@@ -33,14 +54,23 @@ class FormInput extends Component {
           id={name}
           type={type}
           placeholder={placeholder}
-          value={getValue(name) || ''}
-          onChange={event => setValue(name, event.target.value)}
+          value={value || ''}
+          onChange={event => setValue(event.target.value)}
           style={styles.field}
         />
+
+        {debug &&
+          <div style={styles.debug}>
+            <p>dirty: {dirty}</p>
+            <p>pristine: {pristine}</p>
+            <p>error: {JSON.stringify(error)}</p>
+          </div>}
       </div>
     );
   }
 }
+
+const FormInputField = props => <Form.Field component={FormInput} {...props} />
 
 const styles = {
   group: {
@@ -50,6 +80,9 @@ const styles = {
   field: {
     width: '100%',
   },
+  debug: {
+    marginTop: 15,
+  }
 };
 
-export default FormInput;
+export default FormInputField;
