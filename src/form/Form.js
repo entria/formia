@@ -60,7 +60,7 @@ class Form extends PureComponent {
     });
   };
 
-  getValue = name => get(this.state.values, name) || null;
+  getValue = name => get(this.state.values, name, null);
 
   getValues = () => this.state.values;
 
@@ -87,14 +87,14 @@ class Form extends PureComponent {
 
   isDirty(name) {
     const currentValue = this.getValue(name);
-    const initialValue = get(this.props.initialValues, name) || null;
+    const initialValue = get(this.props.initialValues, name, null);
 
     return currentValue !== initialValue;
   }
 
   isPristine(name) {
     const currentValue = this.getValue(name);
-    const initialValue = get(this.props.initialValues, name) || null;
+    const initialValue = get(this.props.initialValues, name, null);
 
     return currentValue === initialValue;
   }

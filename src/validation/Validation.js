@@ -27,7 +27,7 @@ export const validate = (
   const errors = {};
 
   Object.keys(validations).forEach(field => {
-    const value = get(values, field) || null;
+    const value = get(values, field);
     const rules = validations[field];
     if (!rules) {
       return;
