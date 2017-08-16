@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import set from 'lodash/set';
 
 import { Validation } from '../';
+import FormField from './FormField';
 
 class Form extends PureComponent {
   static propTypes = {
@@ -24,6 +25,8 @@ class Form extends PureComponent {
     getValues: PropTypes.func,
     getError: PropTypes.func,
     getErrors: PropTypes.func,
+    isDirty: PropTypes.func,
+    isPristine: PropTypes.func,
     reset: PropTypes.func,
   };
 
@@ -33,23 +36,28 @@ class Form extends PureComponent {
 
   getChildContext() {
     return {
-      setValue: (name, value) => this.setValue(name, value),
+      setValue: (name, value, onChange) => this.setValue(name, value, onChange),
       getValue: name => this.getValue(name),
       getValues: () => this.getValues(),
       getError: name => this.getError(name),
       getErrors: () => this.getErrors(),
+      isDirty: name => this.isDirty(name),
+      isPristine: name => this.isPristine(name),
       reset: () => this.reset(),
     };
   }
 
-  setValue = (name, value) => {
+  setValue = (name, value, onChange) => {
     const values = {
       ...this.state.values,
     };
 
     set(values, name, value);
 
-    this.setState({ values }, () => this.props.onChange(values));
+    this.setState({ values }, () => {
+      this.props.onChange(values);
+      onChange(values);
+    });
   };
 
   getValue = name => get(this.state.values, name) || null;
@@ -77,6 +85,20 @@ class Form extends PureComponent {
     return Validation.validate(values, validations);
   }
 
+  isDirty(name) {
+    const currentValue = this.getValue(name);
+    const initialValue = get(this.props.initialValues, name) || null;
+
+    return currentValue !== initialValue;
+  }
+
+  isPristine(name) {
+    const currentValue = this.getValue(name);
+    const initialValue = get(this.props.initialValues, name) || null;
+
+    return currentValue === initialValue;
+  }
+
   reset = () =>
     this.setState({
       values: this.props.initialValues,
@@ -86,5 +108,7 @@ class Form extends PureComponent {
     return this.props.children;
   }
 }
+
+Form.Field = FormField;
 
 export default Form;

@@ -1,9 +1,9 @@
 import { configure } from '@kadira/storybook';
 
-const req = require.context('./stories', true, /\.story\.js$/);
-
 function loadStories() {
-  req.keys().forEach(filename => req(filename));
+  require('./stories/Form.story');
+  require('./stories/Form.Field.story');
+  require('./stories/Validation.story');
 }
 
 configure(loadStories, module);
