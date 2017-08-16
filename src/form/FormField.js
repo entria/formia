@@ -56,12 +56,11 @@ class FormField extends Component {
   };
 
   render() {
-    const { name } = this.props;
     const CustomComponent = this.props.component;
 
     return (
       <CustomComponent
-        name={name}
+        {...this.props}
         setValue={this.setValue}
         value={this.getValue()}
         dirty={this.isDirty()}

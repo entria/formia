@@ -16,7 +16,7 @@ class FormInput extends Component {
     value: PropTypes.string,
     dirty: PropTypes.bool.isRequired,
     pristine: PropTypes.bool.isRequired,
-    error: PropTypes.bool.isRequired,
+    error: PropTypes.array,
   };
 
   static defaultProps = {
@@ -26,7 +26,8 @@ class FormInput extends Component {
     // debug mode
     debug: false,
     // injected by Form.Field
-    value: '',
+    value: null,
+    error: null,
   };
 
   render() {
@@ -48,7 +49,7 @@ class FormInput extends Component {
     return (
       <div style={styles.group}>
         {label &&
-          <label htmlFor={name}>{label}</label>}
+          <label htmlFor={name} style={styles.label}>{label}</label>}
 
         <input
           id={name}
@@ -61,9 +62,9 @@ class FormInput extends Component {
 
         {debug &&
           <div style={styles.debug}>
-            <p>dirty: {dirty}</p>
-            <p>pristine: {pristine}</p>
-            <p>error: {JSON.stringify(error)}</p>
+            <div>dirty: {dirty.toString()}</div>
+            <div>pristine: {pristine.toString()}</div>
+            <div>error: {JSON.stringify(error)}</div>
           </div>}
       </div>
     );
@@ -77,11 +78,15 @@ const styles = {
     width: '100%',
     marginBottom: 15,
   },
+  label: {
+    display: 'block',
+    marginBottom: 5,
+  },
   field: {
     width: '100%',
   },
   debug: {
-    marginTop: 15,
+    marginTop: 5,
   }
 };
 
