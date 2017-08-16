@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf, action } from '@kadira/storybook';
 
 import { Form } from '../common';
 
@@ -19,8 +19,8 @@ stories.add('onChange', () =>
   <Form>
     <Form.Input
       name="text"
-      label="Look at your console..."
-      onChange={values => console.log(values)}
+      label="Type something..."
+      onChange={action('Form.Field onChange')}
       debug
     />
   </Form>

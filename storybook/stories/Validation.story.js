@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf, action } from '@kadira/storybook';
 
 import { Validation } from '../../src';
 import { Form } from '../common';
@@ -13,11 +13,12 @@ stories.add('default', () =>
       password: [Validation.required()],
     }}
     onSubmit={(values, errors) => {
-      if (errors) {
-        return alert(`Errors: \n ${JSON.stringify(errors)}`);
+      if (errors && Object.keys(errors).length > 0) {
+        action('Validation errors')(errors);
+        return;
       }
 
-      return alert(`Success: \n ${JSON.stringify(values)}`);
+      return action('Validation success')(values);
     }}
   >
     <Form.Input name="user" label="User" placeholder="user@email.com" />
