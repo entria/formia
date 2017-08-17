@@ -1,6 +1,11 @@
 import get from 'lodash/get';
 import { Strings } from '@entria/utils';
 
+export * as Booleans from './BooleanValidations';
+export * as Brazil from './BrazilValidations';
+export * as Dates from './DateValidations';
+export * as Strings from './StringValidations';
+
 type Error = {
   code: string,
   message: string,
@@ -25,7 +30,7 @@ export const validate = (
   const errors = {};
 
   Object.keys(validations).forEach(field => {
-    const value = get(values, field) || null;
+    const value = get(values, field);
     const rules = validations[field];
     if (!rules) {
       return;
@@ -41,7 +46,7 @@ export const validate = (
   return errors;
 };
 
-export const required = (message = 'Campo obrigatório') => value => {
+export const required = (message = 'Required field') => value => {
   const isValid = !Strings.isEmpty(value);
   return isValid ? null : message;
 };

@@ -4,11 +4,15 @@ import PropTypes from 'prop-types';
 import { Form } from '../../../src';
 import FormGroup from './FormGroup';
 
-class FormInput extends Component {
+class FormSelect extends Component {
   static propTypes = {
-    type: PropTypes.string,
     label: PropTypes.any,
-    placeholder: PropTypes.string,
+    options: PropTypes.arrayOf(
+      PropTypes.shape({
+        value: PropTypes.any,
+        label: PropTypes.string,
+      })
+    ),
     // debug mode
     debug: PropTypes.bool,
     // injected by Form.Field
@@ -21,9 +25,8 @@ class FormInput extends Component {
   };
 
   static defaultProps = {
-    type: 'text',
     label: '',
-    placeholder: '',
+    options: [],
     // debug mode
     debug: false,
     // injected by Form.Field
@@ -31,11 +34,22 @@ class FormInput extends Component {
     error: null,
   };
 
+  getDefaultValue = value => {
+    let defaultIndex = 0;
+
+    this.props.options.forEach((option, index) => {
+      if (option.value === value) {
+        defaultIndex = index;
+      }
+    });
+
+    return defaultIndex;
+  }
+
   render() {
     const {
-      type,
       label,
-      placeholder,
+      options,
       // debug mode
       debug,
       // injected by Form.Field
@@ -56,20 +70,27 @@ class FormInput extends Component {
         pristine={pristine}
         error={error}
       >
-        <input
+        <select
           id={name}
-          type={type}
-          placeholder={placeholder}
-          value={value || ''}
-          onChange={event => setValue(event.target.value)}
+          defaultValue={this.getDefaultValue(value)}
+          onChange={event => setValue(options[event.target.value].value)}
           style={styles.field}
-        />
+        >
+          {options.map((option, index) => (
+            <option
+              key={option.value}
+              value={index}
+            >
+              {option.label}
+            </option>
+          ))}
+        </select>
       </FormGroup>
     );
   }
 }
 
-const FormInputField = props => <Form.Field component={FormInput} {...props} />
+const FormSelectField = props => <Form.Field component={FormSelect} {...props} />
 
 const styles = {
   field: {
@@ -77,4 +98,4 @@ const styles = {
   },
 };
 
-export default FormInputField;
+export default FormSelectField;
