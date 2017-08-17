@@ -31,31 +31,31 @@ stories.add('default', () =>
 stories.add('strings', () =>
   <Form
     validations={{
-      isAlpha: [Validation.String.isAlpha()],
-      isEmail: [Validation.String.isEmail()],
-      minLength: [Validation.String.minLength(10)],
-      minWords: [Validation.String.minWords(3)],
+      isAlpha: [Validation.Strings.isAlpha()],
+      isEmail: [Validation.Strings.isEmail()],
+      minLength: [Validation.Strings.minLength(10)],
+      minWords: [Validation.Strings.minWords(3)],
     }}
   >
-    <Form.Input name="isAlpha" label="Validation.String.isAlpha()" />
-    <Form.Input name="isEmail" label="Validation.String.isEmail()" />
-    <Form.Input name="minLength" label="Validation.String.minLength(10)" />
-    <Form.Input name="minWords" label="Validation.String.minWords(3)" />
+    <Form.Input name="isAlpha" label="Validation.Strings.isAlpha()" />
+    <Form.Input name="isEmail" label="Validation.Strings.isEmail()" />
+    <Form.Input name="minLength" label="Validation.Strings.minLength(10)" />
+    <Form.Input name="minWords" label="Validation.Strings.minWords(3)" />
   </Form>
 );
 
 stories.add('booleans', () =>
   <Form
     validations={{
-      isTrue: [Validation.Boolean.isTrue()],
-      isFalse: [Validation.Boolean.isFalse()],
+      isTrue: [Validation.Booleans.isTrue()],
+      isFalse: [Validation.Booleans.isFalse()],
     }}
     initialValues={{
       isFalse: false,
     }}
   >
-    <Form.Select name="isTrue" options={YES_OR_NO_OPTIONS} label="Validation.Boolean.isTrue()" />
-    <Form.Select name="isFalse" options={YES_OR_NO_OPTIONS} label="Validation.Boolean.isFalse()" />
+    <Form.Select name="isTrue" options={YES_OR_NO_OPTIONS} label="Validation.Booleans.isTrue()" />
+    <Form.Select name="isFalse" options={YES_OR_NO_OPTIONS} label="Validation.Booleans.isFalse()" />
   </Form>
 );
 

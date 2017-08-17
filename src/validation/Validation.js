@@ -1,9 +1,9 @@
 import get from 'lodash/get';
 import { Strings } from '@entria/utils';
 
-export * as Boolean from './BooleanValidation';
-export * as Brazil from './BrazilValidation';
-export * as String from './StringValidation';
+export * as Booleans from './BooleanValidations';
+export * as Brazil from './BrazilValidations';
+export * as Strings from './StringValidations';
 
 type Error = {
   code: string,
