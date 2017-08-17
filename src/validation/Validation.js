@@ -3,6 +3,7 @@ import { Strings } from '@entria/utils';
 
 export * as Booleans from './BooleanValidations';
 export * as Brazil from './BrazilValidations';
+export * as Dates from './DateValidations';
 export * as Strings from './StringValidations';
 
 type Error = {

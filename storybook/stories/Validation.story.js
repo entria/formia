@@ -44,6 +44,22 @@ stories.add('strings', () =>
   </Form>
 );
 
+stories.add('dates', () =>
+  <Form
+    validations={{
+      isValid: [Validation.Dates.isValid()],
+      isFuture: [Validation.Dates.isFuture()],
+      isPast: [Validation.Dates.isPast()],
+      isBetween: [Validation.Dates.isBetween('2000-01-01', '2000-12-31')],
+    }}
+  >
+    <Form.Input type="date" name="isValid" label="Validation.Dates.isValid()" />
+    <Form.Input type="date" name="isFuture" label="Validation.Dates.isFuture()" />
+    <Form.Input type="date" name="isPast" label="Validation.Dates.isPast()" />
+    <Form.Input type="date" name="isBetween" label="Validation.Dates.isBetween('2000-01-01', '2000-12-31')" />
+  </Form>
+);
+
 stories.add('booleans', () =>
   <Form
     validations={{
