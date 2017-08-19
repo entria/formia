@@ -1,8 +1,8 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
-import set from 'lodash/set';
-import isEqual from 'lodash/isEqual';
+import get from 'lodash.get';
+import set from 'lodash.set';
+import isEqual from 'lodash.isequal';
 
 import { Validation } from '../';
 import FormField from './FormField';
