@@ -2,6 +2,7 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import set from 'lodash/set';
+import isEqual from 'lodash/isEqual';
 
 import { Validation } from '../';
 import FormField from './FormField';
@@ -47,6 +48,22 @@ class Form extends PureComponent {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { initialValues } = nextProps;
+    const { values } = this.state;
+
+    const newValues = { ...values };
+
+    Object.keys(initialValues).forEach(fieldName => {
+      if (this.isPristine(fieldName)) {
+        const fieldValue = get(initialValues, fieldName);
+        set(newValues, fieldName, fieldValue);
+      }
+    });
+
+    this.setState({ values: newValues });
+  }
+
   setValue = (name, value, onChange) => {
     const values = {
       ...this.state.values,
@@ -89,14 +106,14 @@ class Form extends PureComponent {
     const currentValue = this.getValue(name);
     const initialValue = get(this.props.initialValues, name, null);
 
-    return currentValue !== initialValue;
+    return !isEqual(currentValue, initialValue);
   }
 
   isPristine(name) {
     const currentValue = this.getValue(name);
     const initialValue = get(this.props.initialValues, name, null);
 
-    return currentValue === initialValue;
+    return isEqual(currentValue, initialValue);
   }
 
   reset = () =>
