@@ -9,10 +9,10 @@
     "formia"
   ],
   "license": "ISC",
-  "homepage": "https://github.com/entria/entria-formia#readme",
+  "homepage": "https://github.com/entria/formia#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/entria/entria-formia"
+    "url": "git+https://github.com/entria/formia"
   },
   "main": "lib/index.js",
   "module": "src/index.js",
