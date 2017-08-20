@@ -1,5 +1,9 @@
 import { handleInitialValuesUpdate } from '../utils';
 
+import { setupTest } from '../../../test/utils';
+
+beforeEach(async () => setupTest());
+
 it('handleInitialValuesUpdate - default props', () => {
   expect(handleInitialValuesUpdate()).toMatchSnapshot();
 });

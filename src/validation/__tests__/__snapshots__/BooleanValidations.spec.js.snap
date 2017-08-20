@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`isFalse - another value 1`] = `
+Object {
+  "code": "Validation.Booleans.isFalse",
+  "message": "Must be false",
+}
+`;
+
+exports[`isFalse - empty 1`] = `null`;
+
+exports[`isFalse - false 1`] = `null`;
+
+exports[`isTrue - another value 1`] = `
+Object {
+  "code": "Validation.Booleans.isTrue",
+  "message": "Must be true",
+}
+`;
+
+exports[`isTrue - empty 1`] = `null`;
+
+exports[`isTrue - true 1`] = `null`;
