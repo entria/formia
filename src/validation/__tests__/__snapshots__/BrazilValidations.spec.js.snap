@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cpf - bunch of zeros 1`] = `
+Object {
+  "code": "Validation.Brazil.cpf",
+  "message": "Invalid CPF",
+}
+`;
+
+exports[`cpf - empty 1`] = `null`;
+
+exports[`cpf - invalid 1`] = `
+Object {
+  "code": "Validation.Brazil.cpf",
+  "message": "Invalid CPF",
+}
+`;
+
+exports[`cpf - valid document 1`] = `null`;
+
+exports[`phone - empty 1`] = `null`;
+
+exports[`phone - invalid cellphone 1`] = `
+Object {
+  "code": "Validation.Brazil.phone",
+  "message": "Invalid phone number",
+}
+`;
+
+exports[`phone - invalid landline 1`] = `
+Object {
+  "code": "Validation.Brazil.phone",
+  "message": "Invalid phone number",
+}
+`;
+
+exports[`phone - valid cellphone 1`] = `null`;
+
+exports[`phone - valid landline 1`] = `null`;
