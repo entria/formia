@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`isAlpha - empty 1`] = `null`;
+
+exports[`isAlpha - invalid alpha 1`] = `
+Object {
+  "code": "Validation.Strings.isAlpha",
+  "message": "Only alpha characters are allowed",
+}
+`;
+
+exports[`isAlpha - valid alpha 1`] = `null`;
+
+exports[`isEmail - empty 1`] = `null`;
+
+exports[`isEmail - invalid email 1`] = `
+Object {
+  "code": "Validation.Strings.isEmail",
+  "message": "Invalid email address",
+}
+`;
+
+exports[`isEmail - valid email 1`] = `null`;
+
+exports[`minLength - empty 1`] = `null`;
+
+exports[`minLength - invalid sentence 1`] = `
+Object {
+  "code": "Validation.Strings.minLength",
+  "message": "Must have at least 5 characters",
+}
+`;
+
+exports[`minLength - valid sentence 1`] = `null`;
+
+exports[`minWords - empty 1`] = `null`;
+
+exports[`minWords - invalid sentence 1`] = `
+Object {
+  "code": "Validation.Strings.minWords",
+  "message": "Must have at least 2 words",
+}
+`;
+
+exports[`minWords - valid sentence 1`] = `null`;
