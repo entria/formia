@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`handleInitialValuesUpdate - async loading 1`] = `
+Object {
+  "name": "Barney Stinson",
+}
+`;
+
+exports[`handleInitialValuesUpdate - async update if field is dirty 1`] = `
+Object {
+  "name": "Legendary Barney Stinson",
+}
+`;
+
+exports[`handleInitialValuesUpdate - async update if field is pristine 1`] = `
+Object {
+  "name": "Barney Stinson Awesome",
+}
+`;
+
+exports[`handleInitialValuesUpdate - default props 1`] = `Object {}`;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Form } from '../../../src';
+import FormButton from './FormButton';
 import FormGroup from './FormGroup';
 import FormInput from './FormInput';
 import FormReset from './FormReset';
@@ -39,6 +40,7 @@ const CustomFormWrapper = ({ initialValues, validations, onChange, ...props }) =
     <CustomForm {...props} />
   </Form>;
 
+CustomFormWrapper.Button = FormButton;
 CustomFormWrapper.Group = FormGroup;
 CustomFormWrapper.Input = FormInput;
 CustomFormWrapper.Reset = FormReset;

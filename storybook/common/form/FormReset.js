@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import FormButtom from './FormButton';
+
 class FormReset extends Component {
   static contextTypes = {
     reset: PropTypes.func,
@@ -8,12 +10,9 @@ class FormReset extends Component {
 
   render() {
     return (
-      <button
-        type="button"
-        onClick={() => this.context.reset()}
-      >
+      <FormButtom onClick={() => this.context.reset()}>
         Reset
-      </button>
+      </FormButtom>
     );
   }
 }

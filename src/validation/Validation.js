@@ -1,4 +1,4 @@
-import get from 'lodash/get';
+import get from 'lodash.get';
 import { Strings } from '@entria/utils';
 
 export * as Booleans from './BooleanValidations';

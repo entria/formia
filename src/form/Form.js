@@ -1,10 +1,12 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
-import set from 'lodash/set';
+import get from 'lodash.get';
+import set from 'lodash.set';
+import isEqual from 'lodash.isequal';
 
 import { Validation } from '../';
 import FormField from './FormField';
+import { handleInitialValuesUpdate } from './utils';
 
 class Form extends PureComponent {
   static propTypes = {
@@ -45,6 +47,15 @@ class Form extends PureComponent {
       isPristine: name => this.isPristine(name),
       reset: () => this.reset(),
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const currentValues = { ...this.state.values };
+    const currentInitialvalues = { ...this.props.initialValues };
+    const newInitialValues = { ...nextProps.initialValues };
+
+    const values = handleInitialValuesUpdate(currentValues, currentInitialvalues, newInitialValues);
+    this.setState({ values });
   }
 
   setValue = (name, value, onChange) => {
@@ -89,14 +100,14 @@ class Form extends PureComponent {
     const currentValue = this.getValue(name);
     const initialValue = get(this.props.initialValues, name, null);
 
-    return currentValue !== initialValue;
+    return !isEqual(currentValue, initialValue);
   }
 
   isPristine(name) {
     const currentValue = this.getValue(name);
     const initialValue = get(this.props.initialValues, name, null);
 
-    return currentValue === initialValue;
+    return isEqual(currentValue, initialValue);
   }
 
   reset = () =>

@@ -1,6 +1,8 @@
 import React from 'react';
 
+import FormButtom from './FormButton';
+
 const FormSubmit = () =>
-  <button type="submit">Ok</button>;
+  <FormButtom type="submit">Ok</FormButtom>;
 
 export default FormSubmit;
