@@ -9,7 +9,7 @@ const FormGroup = ({ name, debug, label, dirty, error, pristine, children }) =>
 
     {dirty && error &&
       <div style={styles.error}>
-        {error.map(err => <div key={err}>{err}</div>)}
+        {error.map(err => <div key={err.code}>{err.message}</div>)}
       </div>}
 
     {debug &&

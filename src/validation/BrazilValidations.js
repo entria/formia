@@ -1,7 +1,10 @@
+// @flow
 import { Strings } from '@entria/utils';
 
-export const cpf = (message = 'Invalid CPF') => {
-  const validateFirstDigit = value => {
+import type { RuleError } from './Validation';
+
+export const cpf = () => {
+  const validateFirstDigit = (value: any): boolean => {
     let Soma = 0;
     for (let i = 1; i <= 9; i++) {
       Soma = Soma + parseInt(value.substring(i - 1, i), 10) * (11 - i);
@@ -15,7 +18,7 @@ export const cpf = (message = 'Invalid CPF') => {
     return Resto === parseInt(value.substring(9, 10), 10);
   };
 
-  const validateSecondDigit = value => {
+  const validateSecondDigit = (value: any): boolean => {
     let Soma = 0;
     for (let i = 1; i <= 10; i++) {
       Soma = Soma + parseInt(value.substring(i - 1, i), 10) * (12 - i);
@@ -29,25 +32,34 @@ export const cpf = (message = 'Invalid CPF') => {
     return Resto === parseInt(value.substring(10, 11), 10);
   };
 
-  return value => {
+  return (value: any): RuleError => {
     if (Strings.isEmpty(value)) {
       return null;
     }
 
     const sanitizedValue = Strings.numbers(value);
     if (sanitizedValue === '00000000000') {
-      return message;
+      return {
+        code: 'Validation.Brazil.cpf',
+        message: 'Invalid CPF',
+      };
     }
 
     const isFirstDigitValid = validateFirstDigit(sanitizedValue);
     const isSecondDigitValid = validateSecondDigit(sanitizedValue);
     const isValid = isFirstDigitValid && isSecondDigitValid;
+    if (isValid) {
+      return null;
+    }
 
-    return isValid ? null : message;
+    return {
+      code: 'Validation.Brazil.cpf',
+      message: 'Invalid CPF',
+    };
   };
 };
 
-export const phone = (message = 'Invalid phone number') => value => {
+export const phone = () => (value: any): RuleError => {
   if (Strings.isEmpty(value)) {
     return null;
   }
@@ -58,6 +70,12 @@ export const phone = (message = 'Invalid phone number') => value => {
   const validCellphone = sanitizedValue.length === 11 ? thirdNumber === '9' : true;
   const validLandline = sanitizedValue.length === 10 ? thirdNumber !== '0' : true;
   const isValid = validCellphone && validLandline;
+  if (isValid) {
+    return null;
+  }
 
-  return isValid ? null : message;
+  return {
+    code: 'Validation.Brazil.phone',
+    message: 'Invalid phone number',
+  };
 };

@@ -1,3 +1,4 @@
+// @flow
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash.get';
@@ -8,13 +9,15 @@ import { Validation } from '../';
 import FormField from './FormField';
 import { handleInitialValuesUpdate } from './utils';
 
-class Form extends PureComponent {
-  static propTypes = {
-    initialValues: PropTypes.object,
-    validations: PropTypes.object,
-    onChange: PropTypes.func,
-  };
-
+type Props = {
+  initialValues?: Object,
+  validations?: Object,
+  onChange?: any,
+};
+type State = {
+  values: Object,
+};
+class Form extends PureComponent<Props, State> {
   static defaultProps = {
     initialValues: {},
     validations: {},

@@ -1,13 +1,13 @@
+// @flow
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class FormField extends Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    component: PropTypes.any.isRequired,
-    onChange: PropTypes.func,
-  };
-
+type Props = {
+  name: string,
+  component: any,
+  onChange?: any,
+};
+class FormField extends Component<Props, void> {
   static defaultProps = {
     onChange: () => null,
   };
