@@ -6,6 +6,7 @@ import isEqual from 'lodash.isequal';
 
 import { Validation } from '../';
 import FormField from './FormField';
+import { handleInitialValuesUpdate } from './utils';
 
 class Form extends PureComponent {
   static propTypes = {
@@ -49,19 +50,12 @@ class Form extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { initialValues } = nextProps;
-    const { values } = this.state;
+    const currentValues = { ...this.state.values };
+    const currentInitialvalues = { ...this.props.initialValues };
+    const newInitialValues = { ...nextProps.initialValues };
 
-    const newValues = { ...values };
-
-    Object.keys(initialValues).forEach(fieldName => {
-      if (this.isPristine(fieldName)) {
-        const fieldValue = get(initialValues, fieldName);
-        set(newValues, fieldName, fieldValue);
-      }
-    });
-
-    this.setState({ values: newValues });
+    const values = handleInitialValuesUpdate(currentValues, currentInitialvalues, newInitialValues);
+    this.setState({ values });
   }
 
   setValue = (name, value, onChange) => {
