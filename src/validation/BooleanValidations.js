@@ -24,7 +24,7 @@ export const isFalse = () => (value: any): RuleError => {
     return null;
   }
 
-  const isValid = false === true;
+  const isValid = value === false;
   if (isValid) {
     return null;
   }
