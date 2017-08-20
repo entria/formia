@@ -33,9 +33,6 @@ export const validate = (
   Object.keys(validations).forEach(field => {
     const value = get(values, field);
     const rules = validations[field];
-    if (!rules) {
-      return;
-    }
 
     const fieldErrors = rules.map(rule => rule(value)).filter(error => error !== null);
 
