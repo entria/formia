@@ -20,7 +20,7 @@ class FormField extends Component<Props, void> {
     isPristine: PropTypes.func,
   };
 
-  setValue = value => {
+  setValue = (value: any) => {
     const { setValue } = this.context;
     const { name, onChange } = this.props;
 
