@@ -16,7 +16,7 @@ type Values = {
 type Props = {
   initialValues?: Values,
   validations?: Object,
-  onChange?: any,
+  onChange?: (values: Values) => void,
 };
 type State = {
   values: Values,

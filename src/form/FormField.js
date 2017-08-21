@@ -7,7 +7,7 @@ type Props = {
   component: any,
   onChange?: any,
 };
-class FormField extends Component<Props, void> {
+class FormField extends Component<Props> {
   static defaultProps = {
     onChange: () => null,
   };
