@@ -6,6 +6,7 @@ exports[`isAlpha - invalid alpha 1`] = `
 Object {
   "code": "Validation.Strings.isAlpha",
   "message": "Only alpha characters are allowed",
+  "params": Array [],
 }
 `;
 
@@ -17,6 +18,7 @@ exports[`isEmail - invalid email 1`] = `
 Object {
   "code": "Validation.Strings.isEmail",
   "message": "Invalid email address",
+  "params": Array [],
 }
 `;
 
@@ -28,6 +30,9 @@ exports[`minLength - invalid sentence 1`] = `
 Object {
   "code": "Validation.Strings.minLength",
   "message": "Must have at least 5 characters",
+  "params": Array [
+    5,
+  ],
 }
 `;
 
@@ -39,6 +44,9 @@ exports[`minWords - invalid sentence 1`] = `
 Object {
   "code": "Validation.Strings.minWords",
   "message": "Must have at least 2 words",
+  "params": Array [
+    2,
+  ],
 }
 `;
 

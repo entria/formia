@@ -4,6 +4,7 @@ exports[`required - empty 1`] = `
 Object {
   "code": "Validation.required",
   "message": "Required field",
+  "params": Array [],
 }
 `;
 
@@ -17,6 +18,7 @@ Object {
     Object {
       "code": "Validation.required",
       "message": "Required field",
+      "params": Array [],
     },
   ],
 }

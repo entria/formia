@@ -4,6 +4,7 @@ exports[`isFalse - another value 1`] = `
 Object {
   "code": "Validation.Booleans.isFalse",
   "message": "Must be false",
+  "params": Array [],
 }
 `;
 
@@ -15,6 +16,7 @@ exports[`isTrue - another value 1`] = `
 Object {
   "code": "Validation.Booleans.isTrue",
   "message": "Must be true",
+  "params": Array [],
 }
 `;
 

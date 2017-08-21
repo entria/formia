@@ -4,6 +4,7 @@ exports[`cpf - bunch of zeros 1`] = `
 Object {
   "code": "Validation.Brazil.cpf",
   "message": "Invalid CPF",
+  "params": Array [],
 }
 `;
 
@@ -13,6 +14,7 @@ exports[`cpf - invalid 1`] = `
 Object {
   "code": "Validation.Brazil.cpf",
   "message": "Invalid CPF",
+  "params": Array [],
 }
 `;
 
@@ -24,6 +26,7 @@ exports[`phone - invalid cellphone 1`] = `
 Object {
   "code": "Validation.Brazil.phone",
   "message": "Invalid phone number",
+  "params": Array [],
 }
 `;
 
@@ -31,6 +34,7 @@ exports[`phone - invalid landline 1`] = `
 Object {
   "code": "Validation.Brazil.phone",
   "message": "Invalid phone number",
+  "params": Array [],
 }
 `;
 
