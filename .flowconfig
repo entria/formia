@@ -1,4 +1,5 @@
 [ignore]
+<PROJECT_ROOT>/node_modules/.*
 
 [include]
 
@@ -6,3 +7,4 @@
 
 [options]
 sharedmemory.hash_table_pow=21
+esproposal.export_star_as=enable

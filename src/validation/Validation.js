@@ -1,3 +1,4 @@
+// @flow
 import get from 'lodash.get';
 import { Strings } from '@entria/utils';
 
@@ -6,9 +7,10 @@ export * as Brazil from './BrazilValidations';
 export * as Dates from './DateValidations';
 export * as Strings from './StringValidations';
 
-type Error = {
+export type RuleError = {
   code: string,
   message: string,
+  params: Array<any>,
 };
 
 type ValidationValues = {
@@ -20,7 +22,7 @@ type ValidationRules = {
 };
 
 type ValidationErrors = {
-  [string]: Array<Error>,
+  [string]: Array<RuleError>,
 };
 
 export const validate = (
@@ -32,9 +34,6 @@ export const validate = (
   Object.keys(validations).forEach(field => {
     const value = get(values, field);
     const rules = validations[field];
-    if (!rules) {
-      return;
-    }
 
     const fieldErrors = rules.map(rule => rule(value)).filter(error => error !== null);
 
@@ -46,7 +45,15 @@ export const validate = (
   return errors;
 };
 
-export const required = (message = 'Required field') => value => {
+export const required = () => (value: any): ?RuleError => {
   const isValid = !Strings.isEmpty(value);
-  return isValid ? null : message;
+  if (isValid) {
+    return null;
+  }
+
+  return {
+    code: 'Validation.required',
+    message: 'Required field',
+    params: [],
+  };
 };

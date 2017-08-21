@@ -32,7 +32,7 @@
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.1.0",
-    "flow-bin": "^0.48.0",
+    "flow-bin": "^0.53.0",
     "gh-pages": "^1.0.0",
     "jest": "^20.0.4",
     "lint-staged": "^4.0.0",
@@ -54,6 +54,11 @@
     "prop-types": ">=15.5.10",
     "react": ">=0.14",
     "react-dom": ">=0.14"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/test/mocks/localStorage.js"
+    ]
   },
   "lint-staged": {
     "src/**/*.js": [

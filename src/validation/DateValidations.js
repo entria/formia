@@ -1,42 +1,70 @@
+// @flow
 import { Strings, Dates } from '@entria/utils';
 
-export const isValid = (message = 'Invalid date') => value => {
+import type { RuleError } from './Validation';
+
+export const isValid = () => (value: any): ?RuleError => {
   if (Strings.isEmpty(value)) {
     return null;
   }
 
-  return Dates.isValid(value) ? null : message;
+  if (Dates.isValid(value)) {
+    return null;
+  }
+
+  return {
+    code: 'Validation.Dates.isValid',
+    message: 'Invalid date',
+    params: [],
+  };
 };
 
-export const isFuture = (message = 'Must be greater than today') => value => {
+export const isFuture = () => (value: any): ?RuleError => {
   if (Strings.isEmpty(value)) {
     return null;
   }
 
-  return Dates.isFuture(value) ? null : message;
+  if (Dates.isFuture(value)) {
+    return null;
+  }
+
+  return {
+    code: 'Validation.Dates.isFuture',
+    message: 'Must be greater than today',
+    params: [],
+  };
 };
 
-export const isPast = (message = 'Must be lesser than today') => value => {
+export const isPast = () => (value: any): ?RuleError => {
   if (Strings.isEmpty(value)) {
     return null;
   }
 
-  return Dates.isPast(value) ? null : message;
+  if (Dates.isPast(value)) {
+    return null;
+  }
+
+  return {
+    code: 'Validation.Dates.isPast',
+    message: 'Must be lesser than today',
+    params: [],
+  };
 };
 
-export const isBetween = (
-  minor,
-  major,
-  message = 'Must be greater than $1 and lesser than $2',
-) => value => {
+export const isBetween = (minor: Date, major: Date) => (value: any): ?RuleError => {
   if (Strings.isEmpty(value)) {
     return null;
   }
 
   const isBiggerThanMinor = Dates.compare(value, minor) >= 0;
   const isLessThanMajor = Dates.compare(value, major) <= 0;
+  if (isBiggerThanMinor && isLessThanMajor) {
+    return null;
+  }
 
-  return isBiggerThanMinor && isLessThanMajor
-    ? null
-    : message.replace('$1', minor).replace('$2', major);
+  return {
+    code: 'Validation.Dates.isBetween',
+    message: `Must be greater than ${minor.toString()} and lesser than ${major.toString()}`,
+    params: [minor, major],
+  };
 };

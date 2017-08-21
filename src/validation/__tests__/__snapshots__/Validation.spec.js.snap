@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`required - empty 1`] = `
+Object {
+  "code": "Validation.required",
+  "message": "Required field",
+}
+`;
+
+exports[`required - filled 1`] = `null`;
+
+exports[`validate - empty 1`] = `Object {}`;
+
+exports[`validate - invalid instance 1`] = `
+Object {
+  "name": Array [
+    Object {
+      "code": "Validation.required",
+      "message": "Required field",
+    },
+  ],
+}
+`;
+
+exports[`validate - valid instance 1`] = `Object {}`;

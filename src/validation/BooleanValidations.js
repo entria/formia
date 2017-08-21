@@ -1,17 +1,38 @@
+// @flow
 import { Strings } from '@entria/utils';
 
-export const isTrue = (message = 'Must be true') => value => {
+import type { RuleError } from './Validation';
+
+export const isTrue = () => (value: any): ?RuleError => {
   if (Strings.isEmpty(value)) {
     return null;
   }
 
-  return value === true ? null : message;
+  const isValid = value === true;
+  if (isValid) {
+    return null;
+  }
+
+  return {
+    code: 'Validation.Booleans.isTrue',
+    message: 'Must be true',
+    params: [],
+  };
 };
 
-export const isFalse = (message = 'Must be false') => value => {
+export const isFalse = () => (value: any): ?RuleError => {
   if (Strings.isEmpty(value)) {
     return null;
   }
 
-  return value === false ? null : message;
+  const isValid = value === false;
+  if (isValid) {
+    return null;
+  }
+
+  return {
+    code: 'Validation.Booleans.isFalse',
+    message: 'Must be false',
+    params: [],
+  };
 };

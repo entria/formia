@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`isBetween - empty 1`] = `null`;
+
+exports[`isBetween - is between 1`] = `null`;
+
+exports[`isBetween - is not between 1`] = `
+Object {
+  "code": "Validation.Dates.isBetween",
+  "message": "Must be greater than 2000-01-01 and lesser than 2000-12-31",
+}
+`;
+
+exports[`isFuture - empty 1`] = `null`;
+
+exports[`isFuture - future date 1`] = `null`;
+
+exports[`isFuture - past date 1`] = `
+Object {
+  "code": "Validation.Dates.isFuture",
+  "message": "Must be greater than today",
+}
+`;
+
+exports[`isPast - empty 1`] = `null`;
+
+exports[`isPast - future date 1`] = `
+Object {
+  "code": "Validation.Dates.isPast",
+  "message": "Must be lesser than today",
+}
+`;
+
+exports[`isPast - past date 1`] = `null`;
+
+exports[`isValid - empty 1`] = `null`;
+
+exports[`isValid - invalid date 1`] = `
+Object {
+  "code": "Validation.Dates.isValid",
+  "message": "Invalid date",
+}
+`;
+
+exports[`isValid - valid date 1`] = `null`;

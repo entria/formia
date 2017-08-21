@@ -1,35 +1,71 @@
+// @flow
 import { Strings } from '@entria/utils';
 
-export const isAlpha = (message = 'Only alpha characters are allowed') => value => {
+import type { RuleError } from './Validation';
+
+export const isAlpha = () => (value: any): ?RuleError => {
   if (Strings.isEmpty(value)) {
     return null;
   }
 
-  return Strings.isAlpha(value) ? null : message;
+  if (Strings.isAlpha(value)) {
+    return null;
+  }
+
+  return {
+    code: 'Validation.Strings.isAlpha',
+    message: 'Only alpha characters are allowed',
+    params: [],
+  };
 };
 
-export const isEmail = (message = 'Invalid email address') => value => {
+export const isEmail = () => (value: any): ?RuleError => {
   if (Strings.isEmpty(value)) {
     return null;
   }
 
-  return Strings.isEmail(value) ? null : message;
+  if (Strings.isEmail(value)) {
+    return null;
+  }
+
+  return {
+    code: 'Validation.Strings.isEmail',
+    message: 'Invalid email address',
+    params: [],
+  };
 };
 
-export const minLength = (quantity, message = 'Must have at least $1 characters') => value => {
+export const minLength = (quantity: number) => (value: any): ?RuleError => {
   if (Strings.isEmpty(value)) {
     return null;
   }
 
-  return value.length >= quantity ? null : message.replace('$1', quantity);
+  const isValid = value.length >= quantity;
+  if (isValid) {
+    return null;
+  }
+
+  return {
+    code: 'Validation.Strings.minLength',
+    message: `Must have at least ${quantity} characters`,
+    params: [quantity],
+  };
 };
 
-export const minWords = (quantity, message = 'Must have at least $1 words') => value => {
+export const minWords = (quantity: number) => (value: any): ?RuleError => {
   if (Strings.isEmpty(value)) {
     return null;
   }
 
   const words = value ? value.trim().split(' ') : '';
+  const isValid = words.length >= quantity;
+  if (isValid) {
+    return null;
+  }
 
-  return words.length >= quantity ? null : message.replace('$1', quantity);
+  return {
+    code: 'Validation.Strings.minWords',
+    message: `Must have at least ${quantity} words`,
+    params: [quantity],
+  };
 };

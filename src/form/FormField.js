@@ -1,13 +1,13 @@
+// @flow
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class FormField extends Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    component: PropTypes.any.isRequired,
-    onChange: PropTypes.func,
-  };
-
+type Props = {
+  name: string,
+  component: any,
+  onChange?: any,
+};
+class FormField extends Component<Props> {
   static defaultProps = {
     onChange: () => null,
   };
@@ -20,7 +20,7 @@ class FormField extends Component {
     isPristine: PropTypes.func,
   };
 
-  setValue = value => {
+  setValue = (value: any) => {
     const { setValue } = this.context;
     const { name, onChange } = this.props;
 
