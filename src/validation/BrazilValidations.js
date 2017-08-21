@@ -32,7 +32,7 @@ export const cpf = () => {
     return Resto === parseInt(value.substring(10, 11), 10);
   };
 
-  return (value: any): RuleError => {
+  return (value: any): ?RuleError => {
     if (Strings.isEmpty(value)) {
       return null;
     }
@@ -42,6 +42,7 @@ export const cpf = () => {
       return {
         code: 'Validation.Brazil.cpf',
         message: 'Invalid CPF',
+        params: [],
       };
     }
 
@@ -55,11 +56,12 @@ export const cpf = () => {
     return {
       code: 'Validation.Brazil.cpf',
       message: 'Invalid CPF',
+      params: [],
     };
   };
 };
 
-export const phone = () => (value: any): RuleError => {
+export const phone = () => (value: any): ?RuleError => {
   if (Strings.isEmpty(value)) {
     return null;
   }
@@ -77,5 +79,6 @@ export const phone = () => (value: any): RuleError => {
   return {
     code: 'Validation.Brazil.phone',
     message: 'Invalid phone number',
+    params: [],
   };
 };

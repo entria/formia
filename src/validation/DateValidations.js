@@ -3,7 +3,7 @@ import { Strings, Dates } from '@entria/utils';
 
 import type { RuleError } from './Validation';
 
-export const isValid = () => (value: any): RuleError => {
+export const isValid = () => (value: any): ?RuleError => {
   if (Strings.isEmpty(value)) {
     return null;
   }
@@ -15,10 +15,11 @@ export const isValid = () => (value: any): RuleError => {
   return {
     code: 'Validation.Dates.isValid',
     message: 'Invalid date',
+    params: [],
   };
 };
 
-export const isFuture = () => (value: any): RuleError => {
+export const isFuture = () => (value: any): ?RuleError => {
   if (Strings.isEmpty(value)) {
     return null;
   }
@@ -30,10 +31,11 @@ export const isFuture = () => (value: any): RuleError => {
   return {
     code: 'Validation.Dates.isFuture',
     message: 'Must be greater than today',
+    params: [],
   };
 };
 
-export const isPast = () => (value: any): RuleError => {
+export const isPast = () => (value: any): ?RuleError => {
   if (Strings.isEmpty(value)) {
     return null;
   }
@@ -45,10 +47,11 @@ export const isPast = () => (value: any): RuleError => {
   return {
     code: 'Validation.Dates.isPast',
     message: 'Must be lesser than today',
+    params: [],
   };
 };
 
-export const isBetween = (minor: Date, major: Date) => (value: any): RuleError => {
+export const isBetween = (minor: Date, major: Date) => (value: any): ?RuleError => {
   if (Strings.isEmpty(value)) {
     return null;
   }
@@ -61,6 +64,7 @@ export const isBetween = (minor: Date, major: Date) => (value: any): RuleError =
 
   return {
     code: 'Validation.Dates.isBetween',
-    message: `Must be greater than ${minor} and lesser than ${major}`,
+    message: `Must be greater than ${minor.toString()} and lesser than ${major.toString()}`,
+    params: [minor, major],
   };
 };

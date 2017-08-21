@@ -7,9 +7,10 @@ export * as Brazil from './BrazilValidations';
 export * as Dates from './DateValidations';
 export * as Strings from './StringValidations';
 
-type RuleError = {
+export type RuleError = {
   code: string,
   message: string,
+  params: Array<any>,
 };
 
 type ValidationValues = {
@@ -44,7 +45,7 @@ export const validate = (
   return errors;
 };
 
-export const required = () => (value: any): RuleError => {
+export const required = () => (value: any): ?RuleError => {
   const isValid = !Strings.isEmpty(value);
   if (isValid) {
     return null;
@@ -53,5 +54,6 @@ export const required = () => (value: any): RuleError => {
   return {
     code: 'Validation.required',
     message: 'Required field',
+    params: [],
   };
 };
