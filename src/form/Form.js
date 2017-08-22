@@ -73,8 +73,10 @@ class Form extends PureComponent<Props, State> {
     set(values, name, value);
 
     this.setState({ values }, () => {
-      this.props.onChange(values);
-      onChange(values);
+      const errors = this.getErrors();
+
+      this.props.onChange(values, errors);
+      onChange(values, errors);
     });
   };
 
