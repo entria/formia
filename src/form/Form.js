@@ -1,5 +1,5 @@
 // @flow
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash.get';
 import set from 'lodash.set';
@@ -13,15 +13,31 @@ type Values = {
   [string]: any,
 };
 
+type Validations = {
+  [string]: Array<any>,
+};
+
+export type OnChange = (values: Values, errors: FormErrors) => void;
+
+type FormErrors = {
+  [string]: FieldErrors,
+};
+export type FieldErrors = Array<Error>;
+type Error = {
+  code: string,
+  message: string,
+  params: Array<any>,
+};
+
 type Props = {
   initialValues?: Values,
-  validations?: Object,
-  onChange?: (values: Values) => void,
+  validations?: Validations,
+  onChange?: OnChange,
 };
 type State = {
   values: Values,
 };
-class Form extends PureComponent<Props, State> {
+class Form extends Component<Props, State> {
   static defaultProps = {
     initialValues: {},
     validations: {},
@@ -45,13 +61,14 @@ class Form extends PureComponent<Props, State> {
 
   getChildContext() {
     return {
-      setValue: (name: string, value: any, onChange: any) => this.setValue(name, value, onChange),
-      getValue: (name: string) => this.getValue(name),
-      getValues: () => this.getValues(),
-      getError: (name: string) => this.getError(name),
-      getErrors: () => this.getErrors(),
-      isDirty: (name: string) => this.isDirty(name),
-      isPristine: (name: string) => this.isPristine(name),
+      setValue: (name: string, value: any, onChange: OnChange) =>
+        this.setValue(name, value, onChange),
+      getValue: (name: string): any => this.getValue(name),
+      getValues: (): Values => this.getValues(),
+      getError: (name: string): FieldErrors => this.getError(name),
+      getErrors: (): FormErrors => this.getErrors(),
+      isDirty: (name: string): boolean => this.isDirty(name),
+      isPristine: (name: string): boolean => this.isPristine(name),
       reset: () => this.reset(),
     };
   }
@@ -65,7 +82,7 @@ class Form extends PureComponent<Props, State> {
     this.setState({ values });
   }
 
-  setValue = (name: string, value: any, onChange: any) => {
+  setValue = (name: string, value: any, onChange: OnChange) => {
     const values = {
       ...this.state.values,
     };
@@ -80,11 +97,11 @@ class Form extends PureComponent<Props, State> {
     });
   };
 
-  getValue = (name: string) => get(this.state.values, name, null);
+  getValue = (name: string): any => get(this.state.values, name, null);
 
-  getValues = () => this.state.values;
+  getValues = (): Values => this.state.values;
 
-  getError = (name: string) => {
+  getError = (name: string): FieldErrors => {
     const { validations } = this.props;
     if (!validations || !validations[name]) {
       return null;
@@ -98,21 +115,21 @@ class Form extends PureComponent<Props, State> {
     return errors[name] ? errors[name] : null;
   };
 
-  getErrors = () => {
+  getErrors = (): FormErrors => {
     const { validations } = this.props;
     const { values } = this.state;
 
     return Validation.validate(values, validations);
   };
 
-  isDirty = (name: string) => {
+  isDirty = (name: string): boolean => {
     const currentValue = this.getValue(name);
     const initialValue = get(this.props.initialValues, name, null);
 
     return !isEqual(currentValue, initialValue);
   };
 
-  isPristine = (name: string) => {
+  isPristine = (name: string): boolean => {
     const currentValue = this.getValue(name);
     const initialValue = get(this.props.initialValues, name, null);
 

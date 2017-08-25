@@ -2,12 +2,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import type { OnChange, FieldErrors } from './Form';
+
 type Props = {
   name: string,
   component: any,
-  onChange?: any,
+  onChange?: OnChange,
 };
-class FormField extends Component<Props> {
+type State = {
+  value: any,
+};
+class FormField extends Component<Props, State> {
   static defaultProps = {
     onChange: () => null,
   };
@@ -20,35 +25,41 @@ class FormField extends Component<Props> {
     isPristine: PropTypes.func,
   };
 
+  state = {
+    value: null,
+  };
+
   setValue = (value: any) => {
     const { setValue } = this.context;
     const { name, onChange } = this.props;
 
-    setValue(name, value, onChange);
+    setValue(name, value, (values, errors) => {
+      this.setState({ value }, () => onChange(values, errors));
+    });
   };
 
-  getValue = () => {
+  getValue = (): any => {
     const { getValue } = this.context;
     const { name } = this.props;
 
     return getValue(name);
   };
 
-  getError = () => {
+  getError = (): FieldErrors => {
     const { getError } = this.context;
     const { name } = this.props;
 
     return getError(name);
   };
 
-  isDirty = () => {
+  isDirty = (): boolean => {
     const { isDirty } = this.context;
     const { name } = this.props;
 
     return isDirty(name);
   };
 
-  isPristine = () => {
+  isPristine = (): boolean => {
     const { isPristine } = this.context;
     const { name } = this.props;
 
