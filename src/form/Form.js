@@ -136,10 +136,15 @@ class Form extends Component<Props, State> {
     return isEqual(currentValue, initialValue);
   };
 
-  reset = () =>
-    this.setState({
-      values: this.props.initialValues,
+  reset = () => {
+    const values = { ...this.props.initialValues };
+
+    this.setState({ values }, () => {
+      const errors = this.getErrors();
+
+      this.props.onChange(values, errors);
     });
+  };
 
   render() {
     return this.props.children;
