@@ -79,7 +79,12 @@ class Form extends Component<Props, State> {
     const newInitialValues = { ...nextProps.initialValues };
 
     const values = handleInitialValuesUpdate(currentValues, currentInitialvalues, newInitialValues);
-    this.setState({ values });
+
+    this.setState({ values }, () => {
+      const errors = this.getErrors();
+
+      this.props.onChange(values, errors);
+    });
   }
 
   setValue = (name: string, value: any, onChange: OnChange) => {
