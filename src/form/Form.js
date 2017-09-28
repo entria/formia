@@ -80,6 +80,10 @@ class Form extends Component<Props, State> {
 
     const values = handleInitialValuesUpdate(currentValues, currentInitialvalues, newInitialValues);
 
+    if (isEqual(this.state.values, values)) {
+      return;
+    }
+
     this.setState({ values }, () => {
       const errors = this.getErrors();
 
