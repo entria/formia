@@ -52,6 +52,23 @@ export const minLength = (quantity: number) => (value: any): ?RuleError => {
   };
 };
 
+export const maxLength = (quantity: number) => (value: any): ?RuleError => {
+  if (Strings.isEmpty(value)) {
+    return null;
+  }
+
+  const isValid = value.length <= quantity;
+  if (isValid) {
+    return null;
+  }
+
+  return {
+    code: 'Validation.Strings.maxLength',
+    message: `Must have at most ${quantity} characters`,
+    params: [quantity],
+  };
+};
+
 export const minWords = (quantity: number) => (value: any): ?RuleError => {
   if (Strings.isEmpty(value)) {
     return null;
@@ -66,6 +83,24 @@ export const minWords = (quantity: number) => (value: any): ?RuleError => {
   return {
     code: 'Validation.Strings.minWords',
     message: `Must have at least ${quantity} words`,
+    params: [quantity],
+  };
+};
+
+export const maxWords = (quantity: number) => (value: any): ?RuleError => {
+  if (Strings.isEmpty(value)) {
+    return null;
+  }
+
+  const words = value ? value.trim().split(' ') : '';
+  const isValid = words.length <= quantity;
+  if (isValid) {
+    return null;
+  }
+
+  return {
+    code: 'Validation.Strings.maxWords',
+    message: `Must have at most ${quantity} words`,
     params: [quantity],
   };
 };
