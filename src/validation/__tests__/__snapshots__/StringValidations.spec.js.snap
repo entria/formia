@@ -24,6 +24,34 @@ Object {
 
 exports[`isEmail - valid email 1`] = `null`;
 
+exports[`maxLength - empty 1`] = `null`;
+
+exports[`maxLength - invalid sentence 1`] = `
+Object {
+  "code": "Validation.Strings.maxLength",
+  "message": "Must have at most 5 characters",
+  "params": Array [
+    5,
+  ],
+}
+`;
+
+exports[`maxLength - valid sentence 1`] = `null`;
+
+exports[`maxWords - empty 1`] = `null`;
+
+exports[`maxWords - invalid sentence 1`] = `
+Object {
+  "code": "Validation.Strings.maxWords",
+  "message": "Must have at most 2 words",
+  "params": Array [
+    2,
+  ],
+}
+`;
+
+exports[`maxWords - valid sentence 1`] = `null`;
+
 exports[`minLength - empty 1`] = `null`;
 
 exports[`minLength - invalid sentence 1`] = `
