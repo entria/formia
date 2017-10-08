@@ -1,10 +1,10 @@
 // @flow
-import { Strings, Dates } from '@entria/utils';
+import { isEmpty, Dates } from '@entria/utils';
 
 import type { RuleError } from './Validation';
 
 export const isValid = () => (value: any): ?RuleError => {
-  if (Strings.isEmpty(value)) {
+  if (isEmpty(value)) {
     return null;
   }
 
@@ -20,7 +20,7 @@ export const isValid = () => (value: any): ?RuleError => {
 };
 
 export const isFuture = () => (value: any): ?RuleError => {
-  if (Strings.isEmpty(value)) {
+  if (isEmpty(value)) {
     return null;
   }
 
@@ -36,7 +36,7 @@ export const isFuture = () => (value: any): ?RuleError => {
 };
 
 export const isPast = () => (value: any): ?RuleError => {
-  if (Strings.isEmpty(value)) {
+  if (isEmpty(value)) {
     return null;
   }
 
@@ -52,7 +52,7 @@ export const isPast = () => (value: any): ?RuleError => {
 };
 
 export const isBetween = (minor: Date, major: Date) => (value: any): ?RuleError => {
-  if (Strings.isEmpty(value)) {
+  if (isEmpty(value)) {
     return null;
   }
 

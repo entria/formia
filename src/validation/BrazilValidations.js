@@ -1,5 +1,5 @@
 // @flow
-import { Strings } from '@entria/utils';
+import { isEmpty, Strings } from '@entria/utils';
 
 import type { RuleError } from './Validation';
 
@@ -33,7 +33,7 @@ export const cpf = () => {
   };
 
   return (value: any): ?RuleError => {
-    if (Strings.isEmpty(value)) {
+    if (isEmpty(value)) {
       return null;
     }
 
@@ -62,7 +62,7 @@ export const cpf = () => {
 };
 
 export const phone = () => (value: any): ?RuleError => {
-  if (Strings.isEmpty(value)) {
+  if (isEmpty(value)) {
     return null;
   }
 

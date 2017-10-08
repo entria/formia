@@ -18,7 +18,7 @@
   "module": "src/index.js",
   "jsnext:main": "src/index.js",
   "devDependencies": {
-    "@entria/utils": "^0.0.7",
+    "@entria/utils": "^0.0.9",
     "@kadira/storybook": "^2.35.3",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
@@ -47,7 +47,7 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "@entria/utils": ">=0.0.7",
+    "@entria/utils": ">=0.0.9",
     "lodash.get": ">=4.4.2",
     "lodash.isequal": ">=4.5.0",
     "lodash.set": ">=4.3.2",

@@ -1,10 +1,10 @@
 // @flow
-import { Strings } from '@entria/utils';
+import { isEmpty, Strings } from '@entria/utils';
 
 import type { RuleError } from './Validation';
 
 export const isAlpha = () => (value: any): ?RuleError => {
-  if (Strings.isEmpty(value)) {
+  if (isEmpty(value)) {
     return null;
   }
 
@@ -20,7 +20,7 @@ export const isAlpha = () => (value: any): ?RuleError => {
 };
 
 export const isEmail = () => (value: any): ?RuleError => {
-  if (Strings.isEmpty(value)) {
+  if (isEmpty(value)) {
     return null;
   }
 
@@ -36,7 +36,7 @@ export const isEmail = () => (value: any): ?RuleError => {
 };
 
 export const minLength = (quantity: number) => (value: any): ?RuleError => {
-  if (Strings.isEmpty(value)) {
+  if (isEmpty(value)) {
     return null;
   }
 
@@ -53,7 +53,7 @@ export const minLength = (quantity: number) => (value: any): ?RuleError => {
 };
 
 export const maxLength = (quantity: number) => (value: any): ?RuleError => {
-  if (Strings.isEmpty(value)) {
+  if (isEmpty(value)) {
     return null;
   }
 
@@ -70,7 +70,7 @@ export const maxLength = (quantity: number) => (value: any): ?RuleError => {
 };
 
 export const minWords = (quantity: number) => (value: any): ?RuleError => {
-  if (Strings.isEmpty(value)) {
+  if (isEmpty(value)) {
     return null;
   }
 
@@ -88,7 +88,7 @@ export const minWords = (quantity: number) => (value: any): ?RuleError => {
 };
 
 export const maxWords = (quantity: number) => (value: any): ?RuleError => {
-  if (Strings.isEmpty(value)) {
+  if (isEmpty(value)) {
     return null;
   }
 

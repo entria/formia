@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@entria/utils@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@entria/utils/-/utils-0.0.7.tgz#bb4fc7b211bfe3507d6bd5fdef3776ea4d2b005c"
+"@entria/utils@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@entria/utils/-/utils-0.0.9.tgz#db19f9bc8a34576ddf85b0ac00e8e9d73e503738"
 
 "@kadira/react-split-pane@^1.4.0":
   version "1.4.7"
