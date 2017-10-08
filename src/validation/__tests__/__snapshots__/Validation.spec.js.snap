@@ -10,6 +10,14 @@ Object {
 
 exports[`required - filled 1`] = `null`;
 
+exports[`required - filled with spaces 1`] = `
+Object {
+  "code": "Validation.required",
+  "message": "Required field",
+  "params": Array [],
+}
+`;
+
 exports[`validate - empty 1`] = `Object {}`;
 
 exports[`validate - invalid instance 1`] = `

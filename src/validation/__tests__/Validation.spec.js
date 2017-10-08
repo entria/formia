@@ -32,3 +32,7 @@ it('required - empty', () => {
 it('required - filled', () => {
   expect(Validation.required()('Anything here')).toMatchSnapshot();
 });
+
+it('required - filled with spaces', () => {
+  expect(Validation.required()('   ')).toMatchSnapshot();
+});
