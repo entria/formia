@@ -1,6 +1,6 @@
 // @flow
 import get from 'lodash.get';
-import { Strings } from '@entria/utils';
+import { isEmpty } from '@entria/utils';
 
 export * as Booleans from './BooleanValidations';
 export * as Brazil from './BrazilValidations';
@@ -46,7 +46,7 @@ export const validate = (
 };
 
 export const required = () => (value: any): ?RuleError => {
-  const isValid = !Strings.isEmpty(value);
+  const isValid = !isEmpty(value);
   if (isValid) {
     return null;
   }
