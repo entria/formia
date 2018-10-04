@@ -1,5 +1,10 @@
 # Formia
 
+## Important - Deprecation
+
+This library is depreacated. We'll move all our devo resources to Formik  
+[Formik Github Repo](https://github.com/jaredpalmer/formik)
+
 ## Install
 
 ```
